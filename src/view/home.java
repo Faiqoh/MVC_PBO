@@ -232,6 +232,11 @@ public class home extends javax.swing.JFrame {
                 "Kode Barang", "Nama Barang", "Kategori", "Packaging", "Harga"
             }
         ));
+        table1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table1);
 
         jPanel4.add(jScrollPane1);
@@ -308,6 +313,18 @@ public class home extends javax.swing.JFrame {
         ctoko.CariKategori();
         ctoko.isiTable();
     }//GEN-LAST:event_btnsearchActionPerformed
+
+    private void table1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table1MouseClicked
+        // TODO add your handling code here:
+        int baris = table1.getSelectedRow();
+        if(baris != -1){
+            txtkode.setText(table1.getValueAt(baris, 0).toString());
+            txtnama.setText((String) table1.getValueAt(baris, 1));
+            cbkategori.setSelectedItem(table1.getValueAt(baris, 2).toString());
+            cbjenis.setSelectedItem(table1.getValueAt(baris, 3).toString());
+            txtharga.setText(table1.getValueAt(baris, 4).toString());
+        }
+    }//GEN-LAST:event_table1MouseClicked
 
     /**
      * @param args the command line arguments
