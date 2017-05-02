@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.login_koneksi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -142,17 +143,17 @@ public class login extends javax.swing.JFrame {
     private void btnupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupActionPerformed
         // TODO add your handling code here:
         
-        /*String username= tuser.getText();
+        String username = tuser.getText();
         String password = tpass.getText();
         
-        try{
-            try(Statement statement = (Statement) file_koneksi.GetConnection().createStatement()){
-                statement.executeUpdate("insert into tb_akun(username,password) VALUES('"+username+"','"+password+"');");
+        try {
+            try (Statement statement = (Statement) login_koneksi.GetConnection().createStatement()){
+                statement.executeUpdate("INSERT INTO tb_akun(username,password) VALUES ('"+username+"','"+password+"');");
             }
-            JOptionPane.showMessageDialog(null,"Selamat! anda Berhasil sign Up");
+            JOptionPane.showMessageDialog(null, "Selamat! anda berhasil Sign Up");
         }catch(Exception t){
-            JOptionPane.showMessageDialog(null,"Mohon Maaf, ulangi lagi prosedur");
-        }*/
+            JOptionPane.showMessageDialog(null,"Mohon maaf, ulangi lagi prosedur");
+        }
     }//GEN-LAST:event_btnupActionPerformed
 
     /**
