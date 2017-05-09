@@ -102,6 +102,11 @@ public class login extends javax.swing.JFrame {
         btnup.setBounds(10, 60, 80, 30);
 
         btnexit.setText("Exit");
+        btnexit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnexitActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnexit);
         btnexit.setBounds(120, 60, 70, 30);
 
@@ -155,6 +160,11 @@ public class login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Mohon maaf, ulangi lagi prosedur");
         }
     }//GEN-LAST:event_btnupActionPerformed
+
+    private void btnexitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexitActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnexitActionPerformed
 
     /**
      * @param args the command line arguments

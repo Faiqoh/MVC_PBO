@@ -19,6 +19,10 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel; 
 import controller.c_koneksi; 
 import controller.controllerToko; 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+import javax.swing.Timer;
 import model.m_toko;
 /**
  *
@@ -26,6 +30,7 @@ import model.m_toko;
  */
 public class home extends javax.swing.JFrame {
 
+    String nol_jam, nol_menit, nol_detik;
     controllerToko ctoko;
     List<m_toko>listdata = new ArrayList<>();
     
@@ -35,8 +40,12 @@ public class home extends javax.swing.JFrame {
      */
     public home() {
         initComponents();
-        ctoko = new controllerToko(this);
+        ctoko = new controllerToko (this);
         ctoko.isiTable();
+        String user = null;
+        tadmin.setText(user);
+        setTanggal();
+        setJam();
     }
 
     /**
@@ -52,6 +61,8 @@ public class home extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tadmin = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        hasil = new javax.swing.JLabel();
+        tgl = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         tharga = new javax.swing.JLabel();
         tkode = new javax.swing.JLabel();
@@ -101,6 +112,14 @@ public class home extends javax.swing.JFrame {
         jLabel2.setText("Data Barang di Toko");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(290, 20, 220, 30);
+
+        hasil.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPanel1.add(hasil);
+        hasil.setBounds(590, 30, 100, 30);
+
+        tgl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPanel1.add(tgl);
+        tgl.setBounds(590, 10, 100, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 690, 70);
@@ -276,8 +295,9 @@ public class home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
-        ctoko.SimpanData();
-        ctoko.isiTable();
+        
+       ctoko.SimpanData();
+       ctoko.isiTable();
     }//GEN-LAST:event_btnsaveActionPerformed
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
@@ -311,7 +331,6 @@ public class home extends javax.swing.JFrame {
     private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
         // TODO add your handling code here:
         ctoko.CariKategori();
-        ctoko.isiTable();
     }//GEN-LAST:event_btnsearchActionPerformed
 
     private void table1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table1MouseClicked
@@ -402,6 +421,43 @@ public class home extends javax.swing.JFrame {
     }
     
 
+    private void setTanggal() {
+       java.util.Date skrg = new java.util.Date();
+       java.text.SimpleDateFormat kal = new
+       java.text.SimpleDateFormat("dd/MM/yyyy");
+       tgl.setText(kal.format(skrg));
+    }
+
+    private void setJam() {
+        ActionListener taskPerformer = new ActionListener(){
+        public void actionPerformed(ActionEvent evt){
+                String nol_jam = "";
+                String nol_menit = "";
+                String nol_detik = "";
+                
+                
+                Date dt = new Date();
+                int nilai_jam = dt.getHours();
+                int nilai_menit = dt.getMinutes();
+                int nilai_detik = dt.getSeconds();
+                
+                if (nilai_jam<=9){
+                    nol_jam = "0";
+                } if (nilai_menit <= 9) {
+                    nol_menit = "0";
+                } if (nilai_detik <= 9){
+                    nol_detik = "0";
+                }
+               
+                
+                String jam = nol_jam + Integer.toString(nilai_jam);
+                String menit = nol_menit + Integer.toString(nilai_menit);
+                String detik = nol_detik + Integer.toString(nilai_detik);
+                hasil.setText(jam+":"+menit+":"+detik);
+            }
+        } ;
+    new Timer(100, taskPerformer).start();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnclear;
     private javax.swing.JButton btndel;
@@ -414,6 +470,7 @@ public class home extends javax.swing.JFrame {
     private javax.swing.JLabel cbjenispack;
     private javax.swing.JComboBox<String> cbkategori;
     private javax.swing.JLabel cbkategoribrg;
+    private javax.swing.JLabel hasil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
@@ -425,6 +482,7 @@ public class home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table1;
     private javax.swing.JTextField tadmin;
+    private javax.swing.JLabel tgl;
     private javax.swing.JLabel tharga;
     private javax.swing.JLabel tkode;
     private javax.swing.JLabel tnama;
@@ -432,4 +490,5 @@ public class home extends javax.swing.JFrame {
     private javax.swing.JTextField txtkode;
     private javax.swing.JTextField txtnama;
     // End of variables declaration//GEN-END:variables
+
 }
